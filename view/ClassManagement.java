@@ -242,6 +242,13 @@ public class ClassManagement extends javax.swing.JPanel {
 //        boolean done1 = cc.save(name, students, startDate); //Instance method call
         boolean done2 = ClassController.save(name, students, startDate);
         
+        //03.Give a message to user
+        if(done2){
+            JOptionPane.showMessageDialog(this, "Saved!");
+        } else{
+            JOptionPane.showMessageDialog(this, "Error!");
+        }
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
