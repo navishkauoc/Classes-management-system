@@ -5,6 +5,7 @@
  */
 package com.homework.cms.controller;
 
+import com.homework.cms.model.ClassM;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.sql.PreparedStatement;
  * @author acer
  */
 public class ClassController {
-    static public boolean save(String name, String students, String startDate){
+    static public boolean save(ClassM classm){
         try {
             //02.Generate Non-fillables
         
@@ -34,9 +35,10 @@ public class ClassController {
             PreparedStatement ps = con.prepareStatement(sql);
 
             //06.Fill prepared statement
-            ps.setString(1, name);
-            ps.setString(2, students);
-            ps.setString(3, startDate);
+            ps.setString(1, classm.getName());
+            ps.setInt(2, classm.getStudents());
+            java.sql.Date startDate = new java.sql.Date(classm.getStartDate().getTime());
+            ps.setDate(3, startDate);
 
             //07.Execute statement
             ps.executeUpdate();

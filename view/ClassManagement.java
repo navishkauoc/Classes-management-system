@@ -6,9 +6,12 @@
 package com.homework.cms.view;
 
 import com.homework.cms.controller.ClassController;
+import com.homework.cms.model.ClassM;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -232,21 +235,38 @@ public class ClassManagement extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        //01.Collect fillable data from the fields
-        String name = txtName.getText();
-        String students = txtStudents.getText();
-        String startDate = txtStartDate.getText();
-        
-        //02.Pass data to Controller
-//        ClassController cc = new ClassController();
-//        boolean done1 = cc.save(name, students, startDate); //Instance method call
-        boolean done2 = ClassController.save(name, students, startDate);
-        
-        //03.Give a message to user
-        if(done2){
-            JOptionPane.showMessageDialog(this, "Saved!");
-        } else{
-            JOptionPane.showMessageDialog(this, "Error!");
+        try{
+
+            //01.Collect fillable data from the fields
+            String name = txtName.getText();
+            String students = txtStudents.getText();
+            String startDate = txtStartDate.getText();
+
+            //02.Model data to an object
+            ClassM classm = new ClassM();
+            classm.setName(name);
+            int studentsInt = Integer.parseInt(students);
+            classm.setStudents(studentsInt);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date startDateD = sdf.parse(startDate);
+            classm.setStartDate(startDateD);
+
+
+            //02.Pass data to Controller
+    //        ClassController cc = new ClassController();
+    //        boolean done1 = cc.save(name, students, startDate); //Instance method call
+            boolean done2 = ClassController.save(classm);
+
+            //03.Give a message to user
+            if(done2){
+                JOptionPane.showMessageDialog(this, "Saved!");
+            } else{
+                JOptionPane.showMessageDialog(this, "Error!");
+            }
+            
+        } catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Thota pissuda yako, enter karapan hariyata!");
         }
         
     }//GEN-LAST:event_btnSaveActionPerformed
