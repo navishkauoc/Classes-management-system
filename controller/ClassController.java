@@ -9,6 +9,8 @@ import com.homework.cms.model.ClassM;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -47,6 +49,17 @@ public class ClassController {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+    
+    public static List<ClassM> list(){
+        try {
+            List<ClassM> list = new ArrayList<ClassM>();
+            
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

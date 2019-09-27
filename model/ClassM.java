@@ -41,7 +41,9 @@ public class ClassM {
      * @param students the students to set
      */
     public void setStudents(int students) {
-        this.students = students;
+        if(students>0){
+            this.students = students; //Data validation
+        }
     }
 
     /**
