@@ -55,6 +55,8 @@ public class ClassController {
     public static List<ClassM> list(){
         try {
             List<ClassM> list = new ArrayList<ClassM>();
+            //01.SQL
+            String sql = "SELECT * FROM class";
             
             return list;
         } catch (Exception e) {
