@@ -6,11 +6,14 @@
 package com.homework.cms.controller;
 
 import com.homework.cms.model.ClassM;
+import com.homework.cms.util.DB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.ResultSet;
+import java.util.Date;
 
 /**
  *
@@ -57,6 +60,30 @@ public class ClassController {
             List<ClassM> list = new ArrayList<ClassM>();
             //01.SQL
             String sql = "SELECT * FROM class";
+            
+            //02. DB Connection
+            Connection con = DB.getConnection();
+            
+            //03. Create PS
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            //04. Set PS parameter
+            //05. Execute SQL
+            ResultSet rs = ps.executeQuery();
+            
+            //06. Create target objects and add to the list
+            while(rs.next()){
+                String name = rs.getString("class_name");
+                int students = rs.getInt("students");
+                Date startDate = rs.getDate("start_date");
+                
+                ClassM classm = new ClassM();
+                classm.setName(name);
+                classm.setStudents(students);
+                classm.setStartDate(startDate);
+                
+                list.add(classm);
+            }
             
             return list;
         } catch (Exception e) {

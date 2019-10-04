@@ -12,7 +12,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +27,18 @@ public class ClassManagement extends javax.swing.JPanel {
      */
     public ClassManagement() {
         initComponents();
+        loadToTable();
+    }
+    
+    public void loadToTable(){
+        DefaultTableModel dtm = (DefaultTableModel) tblClasses.getModel();
+        dtm.setRowCount(0);
+        
+        List<ClassM> list = ClassController.list();
+        for(ClassM classm : list){
+            Object[] row = {"",classm.getName(),classm.getStudents(),"","",classm.getStartDate(),"",""};
+            dtm.addRow(row);
+        }
     }
 
     /**
@@ -178,7 +192,7 @@ public class ClassManagement extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Name", "Students", "Progress", "Duration(Days)", "End Date", "Days left", "Remarks"
+                "ID", "Name", "Students", "Progress", "Duration(Days)", "Date", "Days left", "Remarks"
             }
         ));
         jScrollPane1.setViewportView(tblClasses);
@@ -260,6 +274,7 @@ public class ClassManagement extends javax.swing.JPanel {
             //03.Give a message to user
             if(done2){
                 JOptionPane.showMessageDialog(this, "Saved!");
+                loadToTable();
             } else{
                 JOptionPane.showMessageDialog(this, "Error!");
             }
