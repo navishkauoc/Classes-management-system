@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package com.homework.cms.view;
+import com.homework.cms.controller.ClassController;
+import com.homework.cms.model.ClassM;
+import java.util.List;
 
 /**
  *
@@ -16,7 +19,15 @@ public class ProgressManagement extends javax.swing.JPanel {
      */
     public ProgressManagement() {
         initComponents();
+//        loadToCombo();
     }
+    
+//    public void loadToCombo(){
+//        List<ClassM> list = ClassController.list();
+//        for(ClassM classm : list){
+//            jComboBox1.addItem(classm);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,6 +103,11 @@ public class ProgressManagement extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Sreach");
@@ -233,13 +249,19 @@ public class ProgressManagement extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ClassM classm = (ClassM) jComboBox1.getSelectedItem();
+        String SyllabusCovered = jTextField4.getText();
+        String date = jTextField5.getText();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<ClassM> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

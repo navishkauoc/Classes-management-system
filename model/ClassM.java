@@ -60,4 +60,9 @@ public class ClassM {
         this.startDate = startDate;
     }
     
+    @Override
+    public String toString(){
+        return getName()+" "+getStudents();
+    }
+    
 }
