@@ -12,9 +12,11 @@ import java.util.Date;
  * @author acer
  */
 public class ClassM {
+    private int id;
     private String name;
     private int students;
     private Date startDate;
+    private boolean status;
 
     /**
      * @return the name

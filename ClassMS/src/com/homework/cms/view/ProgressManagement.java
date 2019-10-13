@@ -5,8 +5,13 @@
  */
 package com.homework.cms.view;
 import com.homework.cms.controller.ClassController;
+import com.homework.cms.controller.ProgressController;
 import com.homework.cms.model.ClassM;
+import com.homework.cms.model.Progress;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -250,9 +255,34 @@ public class ProgressManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try{
+        //01. Form data collection (Press Ctrl+Shift+F for format the code)
         ClassM classm = (ClassM) jComboBox1.getSelectedItem();
-        String SyllabusCovered = jTextField4.getText();
+        String syllabusCovered = jTextField4.getText();
         String date = jTextField5.getText();
+        
+        double syllabusCoveredS = Double.parseDouble(syllabusCovered);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateD = sdf.parse(date);
+        
+        //02. Model that data into Model
+        Progress progress = new Progress();
+        progress.setClassm(classm);
+        progress.setProgress(syllabusCoveredS);
+        progress.setDate(dateD);
+        
+        boolean done = ProgressController.save(progress);
+        if(done){
+            JOptionPane.showMessageDialog(this,"Saved");
+        } else{
+            JOptionPane.showMessageDialog(this,"Error!");
+        }
+        
+        
+        }catch(Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Saved!");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
