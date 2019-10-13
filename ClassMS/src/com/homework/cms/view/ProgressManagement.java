@@ -19,15 +19,15 @@ public class ProgressManagement extends javax.swing.JPanel {
      */
     public ProgressManagement() {
         initComponents();
-//        loadToCombo();
+        loadToCombo();
     }
     
-//    public void loadToCombo(){
-//        List<ClassM> list = ClassController.list();
-//        for(ClassM classm : list){
-//            jComboBox1.addItem(classm);
-//        }
-//    }
+    public void loadToCombo(){
+        List<ClassM> list = ClassController.list();
+        for(ClassM classm : list){
+            jComboBox1.addItem(classm);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
